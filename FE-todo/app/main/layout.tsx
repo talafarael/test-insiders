@@ -16,7 +16,7 @@ export default function RootLayout({
     }
   }, [data])
   const { addUser, user } = useUserStore()
-  if (!user || isLoading) {
+  if (!user && isLoading) {
     return <h1>Laod</h1>
   }
 

@@ -23,6 +23,5 @@ export const useTokenStore = create<ITokenStore>()(
         token: token
       }));
     }
-
   }))
 )

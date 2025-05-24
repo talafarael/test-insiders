@@ -1,4 +1,4 @@
-import { useMutation, UseMutationResult } from "@tanstack/react-query";
+import { useMutation, UseMutationResult, useQueryClient } from "@tanstack/react-query";
 import { createApi } from "../axios";
 import { AxiosError, AxiosResponse } from "axios";
 import { IError } from "@/src/shared/type/api/IError";

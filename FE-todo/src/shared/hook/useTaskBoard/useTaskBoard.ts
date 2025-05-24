@@ -1,6 +1,10 @@
 import { useCreateTaskBoardhMutation } from "@/src/api/taskBaord/useMutation"
 import { ICreateTaskBoard } from "../../type/taskBorad/ICreateTaskBoard"
 import { useQueryClient } from "@tanstack/react-query"
+import { useGetTaskBoardQuery } from "@/src/api/taskBaord/useQuery"
+import { useParams } from "next/navigation"
+import { useEffect } from "react"
+import { useTaskBoardStore } from "@/src/store/taskBoard"
 
 export const useCreateTaskBoard = () => {
   const createTaskBoardMutation = useCreateTaskBoardhMutation()
@@ -20,3 +24,14 @@ export const useCreateTaskBoard = () => {
   }
 }
 
+export const useGetTaskBoard = () => {
+  const params = useParams();
+  const id = params.id;
+  const { addTaskBoard } = useTaskBoardStore()
+
+  const { data, error, isLoading } = useGetTaskBoardQuery(id as string)
+  useEffect(() => {
+    if (data && data?.data) addTaskBoard(data.data)
+  }, [data])
+  return { data, error, isLoading }
+}

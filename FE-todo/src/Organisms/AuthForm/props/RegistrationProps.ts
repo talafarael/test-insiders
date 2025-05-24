@@ -1,5 +1,5 @@
 import { LoginProps } from "./LoginProps";
 
-export interface RegistartionProps extends LoginProps {
+export interface RegistrationProps extends LoginProps {
   name: string
 }

@@ -1,8 +1,11 @@
+"use client"
 import { CreateBoardWindow } from "@/src/Organisms/CreateBoardWindow"
 import { useUserStore } from "@/src/store/userStore"
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
   const { user } = useUserStore()
+  const pathname = usePathname();
 
   return (
     <div>

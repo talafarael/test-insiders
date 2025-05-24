@@ -15,7 +15,7 @@ export const ItemTaskBoard: React.FC<ItemTaskBoardProps> = ({ taskBoard }) => {
   const router = useRouter();
 
   const handlerEnterToTaskBoard = () => {
-    router.push(`taskBoard/${taskBoard.id}`)
+    router.push(`main/taskBoard/${taskBoard.id}`)
   }
   return (
     <Card >
