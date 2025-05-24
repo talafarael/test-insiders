@@ -3,7 +3,7 @@ services:
     image: postgres:16
     container_name: my_postgres
     environment:
-      POSTGRES_USER: mustage
+      POSTGRES_USER: insiders
       POSTGRES_PASSWORD: randompassword
       POSTGRES_DB: mydb
     ports:
@@ -14,3 +14,4 @@ services:
 
 volumes:
   postgres_data:
+
