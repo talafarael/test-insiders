@@ -9,9 +9,9 @@ export class UserService {
       return await this.prisma.user.findFirst({
         where: { email: email },
         include: {
-          tasks: true
+          taskBoard: true
         }
-      })
+      });
     } catch (e) {
       console.error('Error in findOne:', e);
       throw new Error('Failed to fetch user by name');
