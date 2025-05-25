@@ -51,7 +51,6 @@ export const useChagneStateTask = () => {
 export const useChagneTask = () => {
   const chagneTaskMutation = useChangeTaskMutation()
   const queryClient = useQueryClient();
-  const params = useParams();
 
   const handlerChagneTask = async (data: IChangeTask) => {
     try {

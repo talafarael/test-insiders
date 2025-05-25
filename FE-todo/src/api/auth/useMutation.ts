@@ -2,7 +2,7 @@ import { IError } from "@/src/shared/type/api/IError";
 import { IAuthResponse } from "@/src/shared/type/auth/IAuthResponse";
 import { IAuthVariables } from "@/src/shared/type/auth/IAuthVariables";
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { createApi } from "../axios";
 
 export const useAuthMutation = (): UseMutationResult<AxiosResponse<IAuthResponse>, AxiosError<IError>, IAuthVariables> => {

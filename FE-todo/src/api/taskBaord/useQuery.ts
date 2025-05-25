@@ -1,5 +1,4 @@
 import { IError } from "@/src/shared/type/api/IError";
-import { IUser } from "@/src/shared/type/user/IUser";
 import { AxiosError, AxiosResponse } from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { createApi } from "../axios";

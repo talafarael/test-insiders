@@ -13,9 +13,7 @@ import { IChangeTask } from "@/src/shared/type/task/IChangeTask"
 import { ICreateTaskForm } from "@/src/shared/type/task/ICreateTaskForm"
 import { ITask } from "@/src/shared/type/task/ITask"
 import { useTaskBoardStore } from "@/src/store/taskBoard"
-import { Description } from "@radix-ui/react-dialog"
 import { AxiosError } from "axios"
-import { describe } from "node:test"
 import { useEffect, useState } from "react"
 export const ChangetaskWindow = ({ id }: { id: string }) => {
   const [open, setOpen] = useState(false)
@@ -27,7 +25,7 @@ export const ChangetaskWindow = ({ id }: { id: string }) => {
       if (elem.id == id) return elem
     })
     setTask(taskFind)
-  })
+  }, [taskBoard, id])
   const handlerTaskSubmit = async (data: ICreateTaskForm) => {
     const body: IChangeTask = {
       title: data.title,
@@ -47,19 +45,19 @@ export const ChangetaskWindow = ({ id }: { id: string }) => {
           Change task
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="w-[500px]   bg-[#ECFAE5] rounded-lg shadow-lg p-6 [&>button]:hidden flex-col flex items-center justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%]">
         <DialogHeader>
-          <DialogTitle>Change task</DialogTitle>
+          <DialogTitle className="text-xl font-semibold mb-4">Change task</DialogTitle>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
+
+        <div className="flex flex-col space-y-4">
           <TaskForm
             title={task?.title}
             description={task?.description}
-            error={error as AxiosError<IError>} handlerSubmit={handlerTaskSubmit} />
+            error={error as AxiosError<IError>}
+            handlerSubmit={handlerTaskSubmit}
+          />
         </div>
-
-      </DialogContent>
-
-    </Dialog>
+      </DialogContent>    </Dialog>
   )
 }

@@ -5,7 +5,6 @@ import { CustomeErrorMessage } from "@/src/Atoms/CustomErrorMessage";
 import { TaskBoardData } from "./data/TaskBoard.data";
 import { InputController } from "@/src/Molecules/InputController";
 import { CustomButton } from "@/src/Atoms/CustomButton";
-import { useCreateTaskBoard } from "@/src/shared/hook/useTaskBoard/useTaskBoard";
 import { ICreateTaskBoard } from "@/src/shared/type/taskBorad/ICreateTaskBoard";
 
 export const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ title = "", description = "", handlerSubmit, error }) => {
@@ -18,6 +17,8 @@ export const CreateBoardForm: React.FC<CreateBoardFormProps> = ({ title = "", de
 
   return (
     <form
+      className="flex flex-col justify-center items-center"
+
       onSubmit={
         handleSubmit(handlerSubmit)
       }

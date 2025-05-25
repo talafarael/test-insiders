@@ -1,8 +1,8 @@
 import { ListTask } from "@/src/Molecules/TaskList"
 
-export const Task = (props: {}) => {
+export const Task = () => {
   return (
-    <div>
+    <div className="w-[100vw] flex items-center justify-center  ">
       <ListTask />
 
     </div>

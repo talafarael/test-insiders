@@ -2,15 +2,10 @@
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogOverlay
-
 } from "@/components/ui/dialog"
 import { useCreateTaskBoard } from "@/src/shared/hook/useTaskBoard/useTaskBoard"
 import { CreateBoardForm } from "../CreateBaordForm"
@@ -49,14 +44,14 @@ export const CreateBoardWindow = () => {
           variant="outline"
           className="mr-[40px] h-[50px] w-[200px] text-[20px] rounded-[15px] bg-[#537D5D] leading-7"
         >
-          {pathname === "/main" ? "Create task board" : "Create task"}
+          {pathname === "/main" ? "Create  board" : "Create task"}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="[&>button]:hidden rounded-[5px] relative fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[550px] h-[500px] flex flex-col items-center justify-center bg-[#B0DB9C]">
         <DialogHeader>
           <DialogTitle className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
-            Create task board
+            Create  board
           </DialogTitle>
         </DialogHeader>
 

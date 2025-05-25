@@ -27,9 +27,12 @@ export const useCreateTaskBoard = () => {
 export const useGetTaskBoard = () => {
   const params = useParams();
   const id = params.id;
-  const { addTaskBoard } = useTaskBoardStore()
+  const { addTaskBoard, removeTaskBoard } = useTaskBoardStore()
 
-  const { data, error, isLoading } = useGetTaskBoardQuery(id as string)
+  const { data, error, isLoading, isError } = useGetTaskBoardQuery(id as string)
+  useEffect(() => {
+    removeTaskBoard()
+  }, [error, isError])
   useEffect(() => {
     if (data && data?.data) addTaskBoard(data.data)
   }, [data])

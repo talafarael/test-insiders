@@ -9,7 +9,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { data, error, isLoading } = useGetUserQuery()
+  const { data, isLoading } = useGetUserQuery()
   useEffect(() => {
     if (data && data.data) {
       addUser(data.data)

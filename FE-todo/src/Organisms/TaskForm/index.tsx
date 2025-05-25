@@ -3,7 +3,6 @@ import { InputController } from "@/src/Molecules/InputController";
 import { TaskFormProps } from "./TaskformProps";
 import { TaskData } from "./data/TaskForm.data";
 import { useForm } from "react-hook-form";
-import { ICreateTask } from "@/src/shared/type/task/ICreatetask";
 import { CustomeErrorMessage } from "@/src/Atoms/CustomErrorMessage";
 import { CustomButton } from "@/src/Atoms/CustomButton";
 import { ICreateTaskForm } from "@/src/shared/type/task/ICreateTaskForm";
@@ -18,6 +17,8 @@ export const TaskForm: React.FC<TaskFormProps> = ({ title = "", description = ""
 
   return (
     <form
+      className="flex flex-col justify-center items-center"
+
       onSubmit={
         handleSubmit(handlerSubmit)
       }

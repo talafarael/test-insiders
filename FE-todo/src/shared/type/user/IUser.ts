@@ -7,4 +7,7 @@ export interface IUser {
   name: string;
   role: 'USER' | 'ADMIN'
   taskBoard: ITaskBoard[];
+  contributions: {
+    taskBoard: ITaskBoard
+  }[]
 }

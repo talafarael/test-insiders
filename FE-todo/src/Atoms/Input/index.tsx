@@ -14,7 +14,7 @@ export const CustomInput: React.FC<InputProps> = ({ validation, field, placehold
       {
         !error && !validation.required &&
         <p className="text-[#004526] opacity-65 flex w-full  items-start text-sm">
-          "*This field is optional"
+          This field is optional
         </p>
       }
       {error && <p className="text-[#004526] h-[10px] text-sm">{error}</p>}

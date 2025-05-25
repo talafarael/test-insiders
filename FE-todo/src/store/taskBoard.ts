@@ -5,6 +5,7 @@ import { ITaskBoard } from "../shared/type/taskBorad/ITaskBoard";
 export interface ITaskBoardStore {
   taskBoard: ITaskBoard | undefined
   addTaskBoard: (user: ITaskBoard) => void
+  removeTaskBoard: () => void
 }
 
 const localMiddlewares = (f: StateCreator<ITaskBoardStore>) =>
@@ -22,7 +23,13 @@ export const useTaskBoardStore = create<ITaskBoardStore>()(
       set(() => ({
         taskBoard: taskBoard
       }));
+    },
+    removeTaskBoard: () => {
+      set(() => ({
+        taskBoard: undefined
+      }));
     }
+
   }))
 )
 

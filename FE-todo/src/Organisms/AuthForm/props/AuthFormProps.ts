@@ -1,4 +1,4 @@
-type AuthFormProps = {
+export type AuthFormProps = {
   typePage: "login" | "register"
 
 };

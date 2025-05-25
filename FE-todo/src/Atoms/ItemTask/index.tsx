@@ -14,7 +14,7 @@ export const ItemTask: React.FC<ItemTaskProps> = ({ task }) => {
     })
   }
   return (
-    <Card className="w-full max-w-[300px] bg-white shadow-md rounded-lg h-[150px] overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <Card className="w-full bg-[#ECFAE5] max-w-[300px]  shadow-md rounded-lg  overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center justify-between">
           <CardTitle className={`text-lg font-semibold ${task.isComplete ? "line-through text-gray-400" : "text-gray-900"}`}>

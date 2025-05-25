@@ -1,5 +1,4 @@
 "use client"
-
 import { useForm } from "react-hook-form";
 import { LoginProps } from "./props/LoginProps";
 import { RegistrationProps } from "./props/RegistrationProps";
@@ -10,6 +9,7 @@ import { CustomButton } from "@/src/Atoms/CustomButton";
 import { useAuth } from "@/src/shared/hook/useAuth/useAuth";
 import { CustomeErrorMessage } from "@/src/Atoms/CustomErrorMessage";
 import { IAuthVariables } from "@/src/shared/type/auth/IAuthVariables";
+import { AuthFormProps } from "./props/AuthFormProps";
 type FormDataFor<T extends "login" | "register"> = T extends "login"
   ? LoginProps
   : RegistrationProps;

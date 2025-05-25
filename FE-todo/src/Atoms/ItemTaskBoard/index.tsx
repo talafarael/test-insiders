@@ -3,7 +3,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -24,10 +23,10 @@ export const ItemTaskBoard: React.FC<ItemTaskBoardProps> = ({ taskBoard }) => {
         <CardTitle className=" text-4xl font-extrabold tracking-tight lg:text-5xl">{taskBoard.title}</CardTitle>
         <CardDescription className="scroll-m-20 text-2xl font-semibold tracking-tight"> {taskBoard.description}</CardDescription>
       </CardHeader>
-      <CardFooter className=" ">
+      <CardContent className=" ">
         <CustomButton onClick={handlerEnterToTaskBoard} text="Enter to board">
         </CustomButton>
-      </CardFooter>
+      </CardContent>
     </Card>
 
   )
