@@ -57,6 +57,9 @@ export class ContributerService {
       if (!contributer) {
         throw new NotFoundException('Contributor not found');
       }
+      if (contributer.role == "WRITER") {
+        return true
+      }
       if (contributer.role == premission) {
         return true
       }
