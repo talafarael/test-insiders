@@ -62,7 +62,7 @@ export class TaskBoradService {
       if (!taskBoard) {
         throw new NotFoundException('TaskBoard not found');
       }
-      await this.checkPremisssionByTaskBoardId(user, id, contributorsRole.writer)
+      await this.checkPremisssionByTaskBoardId(user, id, contributorsRole.reader)
       return taskBoard
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
