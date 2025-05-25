@@ -21,7 +21,7 @@ export default function RootLayout({
   }
 
   return (
-    <div>
+    <div className="bg-[#AAB99A] min-h-[100vh]">
       <Header />
       {children}
     </div>

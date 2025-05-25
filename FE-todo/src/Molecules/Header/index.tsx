@@ -8,7 +8,7 @@ export const Header = () => {
   const pathname = usePathname();
 
   return (
-    <div>
+    <div className="bg-[#73946B] h-[100px] items-center  w-[100vw] flex justify-between">
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Hello! {user?.name}
       </h1>

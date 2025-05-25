@@ -14,29 +14,32 @@ export const ItemTask: React.FC<ItemTaskProps> = ({ task }) => {
     })
   }
   return (
-    <Card className="w-full max-w-md">
-      <CardHeader>
+    <Card className="w-full max-w-[300px] bg-white shadow-md rounded-lg h-[150px] overflow-hidden hover:shadow-lg transition-shadow duration-300">
+      <CardHeader className="px-4 py-3 border-b border-gray-200">
         <div className="flex items-center justify-between">
-          <CardTitle className={`text-lg font-semibold ${task.isComplete ? "line-through text-muted-foreground" : ""}`}>
+          <CardTitle className={`text-lg font-semibold ${task.isComplete ? "line-through text-gray-400" : "text-gray-900"}`}>
             {task.title}
           </CardTitle>
           <Checkbox
             checked={task.isComplete}
             onCheckedChange={handlerChangeState}
             aria-label="Mark task complete"
-
+            className="w-5 h-5 text-blue-600 rounded border border-gray-300 cursor-pointer"
           />
         </div>
       </CardHeader>
-      <CardContent>
-        <p className={`${task.isComplete ? "line-through text-muted-foreground" : ""}`}>
+
+      <CardContent className="px-4 py-3">
+        <p className={`${task.isComplete ? "line-through text-gray-400" : "text-gray-700"}`}>
           {task.description}
         </p>
       </CardContent>
-      <CardFooter>
-        <DeleteTask id={task.id} />
-        <ChangetaskWindow id={task.id} />
-        <small className="text-sm text-muted-foreground">Board ID: {task.taskBoardId}</small>
+
+      <CardFooter className="px-4 py-3 border-t border-gray-200 flex items-center justify-between gap-2">
+        <div className="flex gap-2">
+          <DeleteTask id={task.id} />
+          <ChangetaskWindow id={task.id} />
+        </div>
       </CardFooter>
     </Card>
   )

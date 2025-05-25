@@ -4,10 +4,10 @@ import { useTaskBoardStore } from "@/src/store/taskBoard"
 export const HeaderTask = () => {
   const { taskBoard } = useTaskBoardStore()
   return (
-    <div>
-      <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-        Title:{taskBoard?.title}</h2>
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">Description:{taskBoard?.description}</h3>
+    <div className="bg-[#AAB999] h-[100px] flex justify-center flex-col ">
+      <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl ml-[20px]">
+        Title:{taskBoard?.title}</h1>
+      <h3 className=" text-2xl font-semibold tracking-tight mt-5px ml-[20px]">Description:{taskBoard?.description}</h3>
     </div>
   )
 }

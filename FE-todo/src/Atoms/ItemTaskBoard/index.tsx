@@ -18,15 +18,14 @@ export const ItemTaskBoard: React.FC<ItemTaskBoardProps> = ({ taskBoard }) => {
     router.push(`main/taskBoard/${taskBoard.id}`)
   }
   return (
-    <Card >
+    <Card className="bg-[#DDF6D2] shadow-md w-[40vw] h-[220px]">
+
       <CardHeader>
-        <CardTitle>{taskBoard.title}</CardTitle>
+        <CardTitle className=" text-4xl font-extrabold tracking-tight lg:text-5xl">{taskBoard.title}</CardTitle>
+        <CardDescription className="scroll-m-20 text-2xl font-semibold tracking-tight"> {taskBoard.description}</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <CardDescription>{taskBoard.description}</CardDescription>
-      </CardContent>
-      <CardFooter>
-        <CustomButton onClick={handlerEnterToTaskBoard} text="Enter to task Borad">
+      <CardFooter className=" ">
+        <CustomButton onClick={handlerEnterToTaskBoard} text="Enter to board">
         </CustomButton>
       </CardFooter>
     </Card>

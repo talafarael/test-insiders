@@ -9,6 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogOverlay
+
 } from "@/components/ui/dialog"
 import { useCreateTaskBoard } from "@/src/shared/hook/useTaskBoard/useTaskBoard"
 import { CreateBoardForm } from "../CreateBaordForm"
@@ -43,26 +45,35 @@ export const CreateBoardWindow = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">
-          {"/main" == pathname ?
-            "Create task board"
-            :
-            "Create task"}
+        <Button
+          variant="outline"
+          className="mr-[40px] h-[50px] w-[200px] text-[20px] rounded-[15px] bg-[#537D5D] leading-7"
+        >
+          {pathname === "/main" ? "Create task board" : "Create task"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+
+      <DialogContent className="[&>button]:hidden rounded-[5px] relative fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] w-[550px] h-[500px] flex flex-col items-center justify-center bg-[#B0DB9C]">
         <DialogHeader>
-          <DialogTitle>Create</DialogTitle>
+          <DialogTitle className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+            Create task board
+          </DialogTitle>
         </DialogHeader>
+
         <div className="flex items-center space-x-2">
-          {"/main" == pathname ?
-            <CreateBoardForm error={error as AxiosError<IError>} handlerSubmit={handlerSubmit} />
-            :
-            <TaskForm error={errorCreateTask as AxiosError<IError>} handlerSubmit={handlerTaskSubmit} />}
+          {pathname === "/main" ? (
+            <CreateBoardForm
+              error={error as AxiosError<IError>}
+              handlerSubmit={handlerSubmit}
+            />
+          ) : (
+            <TaskForm
+              error={errorCreateTask as AxiosError<IError>}
+              handlerSubmit={handlerTaskSubmit}
+            />
+          )}
         </div>
-
       </DialogContent>
-
     </Dialog>
   )
 }
