@@ -9,7 +9,12 @@ export class UserService {
       return await this.prisma.user.findFirst({
         where: { email: email },
         include: {
-          taskBoard: true
+          taskBoard: true,
+          contributions: {
+            include: {
+              taskBoard: true
+            }
+          }
         }
       });
     } catch (e) {

@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { RegistrationDto } from './dto/registration.dto';
 import { LoginDto } from './dto/login.dto';
 import { AuthResponse } from './dto/auth-response.dto';
+import { error } from 'console';
 
 @Injectable()
 export class AuthService {
@@ -16,16 +17,21 @@ export class AuthService {
   ) { }
 
   async validateUser(email: string, pass: string): Promise<any> {
-    const user = await this.userService.findOneByEmail(email);
-    if (user) {
-      const verifyPassword = await bcrypt.compareSync(pass, user.password);
+    try {
+      const user = await this.userService.findOneByEmail(email);
+      if (user) {
+        const verifyPassword = await bcrypt.compareSync(pass, user.password);
 
-      if (!verifyPassword) {
-        return null
+        if (!verifyPassword) {
+          return null
+        }
+        return user
       }
-      return user
+      return null;
+    } catch (e) {
+      console.error(e)
+      throw e
     }
-    return null;
   }
   async registration(data: RegistrationDto): Promise<AuthResponse> {
     try {
@@ -50,14 +56,19 @@ export class AuthService {
       }
     } catch (e) {
       console.error(e)
-      throw new Error(e);
+      throw e
     }
   }
 
   async login(user: LoginDto): Promise<AuthResponse> {
-    const payload = { email: user.email, id: user.id };
-    return {
-      token: this.jwtService.sign(payload),
-    };
+    try {
+      const payload = { email: user.email, id: user.id };
+      return {
+        token: this.jwtService.sign(payload),
+      };
+    } catch (e) {
+      console.error(e)
+      throw e
+    }
   }
 }

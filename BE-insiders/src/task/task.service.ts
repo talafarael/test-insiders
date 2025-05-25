@@ -32,7 +32,7 @@ export class TaskService {
       return taskWithBoard?.taskBoard ?? null;
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
 
   }
@@ -60,7 +60,7 @@ export class TaskService {
   }
   async changeStateTask(user: IToken, data: ChangeTaskStateDto) {
     try {
-      const checkPremmission = this.checkPremisssionByTaskId(user, data.id, contributorsRole.writer)
+      const checkPremmission = await this.checkPremisssionByTaskId(user, data.id, contributorsRole.writer)
       if (!checkPremmission) {
         throw new Error('Failed to premission');
       }
@@ -77,7 +77,7 @@ export class TaskService {
 
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
   async checkPremisssionByTaskId(user: IToken, id: string, premission: ContributorsRole) {
@@ -89,7 +89,7 @@ export class TaskService {
       return await this.contributerService.checkPremission(user, taskBoard, premission)
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
   async changeTask(user: IToken, data: ChangeTaskDto) {
@@ -110,7 +110,7 @@ export class TaskService {
       return true
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
   async delete(id: string) {
@@ -124,7 +124,7 @@ export class TaskService {
 
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
 }

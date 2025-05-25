@@ -1,7 +1,10 @@
-import { Controller, Get, Request, UseGuards } from '@nestjs/common';
+import { Controller, Get, Request, UseFilters, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Request as ExpressRequest } from 'express'; import { IToken } from 'src/shared/type/IToken';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { AllExceptionsFilter } from 'src/filter/http-exception.filter';
+
+@UseFilters(AllExceptionsFilter)
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }

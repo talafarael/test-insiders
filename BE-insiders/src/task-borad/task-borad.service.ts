@@ -4,6 +4,7 @@ import { CreateTaskBoardDto } from './dto/create-task-board.dto';
 import { IToken } from 'src/shared/type/IToken';
 import { ContributerService } from 'src/contributer/contributer.service';
 import { ContributorsRole } from 'src/contributer/enum/contributer-role.enum';
+import { contributorsRole } from 'src/contributer/config/contributer-role';
 
 @Injectable()
 export class TaskBoradService {
@@ -23,7 +24,7 @@ export class TaskBoradService {
       return true
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
   async checkPremisssionByTaskBoardId(user: IToken, id: string, premission: ContributorsRole) {
@@ -35,7 +36,7 @@ export class TaskBoradService {
       return await this.contributerService.checkPremission(user, taskBoard, premission)
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
 
@@ -51,7 +52,7 @@ export class TaskBoradService {
       return taskBoard
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
 
   }
@@ -61,13 +62,11 @@ export class TaskBoradService {
       if (!taskBoard) {
         throw new NotFoundException('TaskBoard not found');
       }
-      if (user.id != taskBoard.ownerId) {
-        throw new ForbiddenException('You do not have access to this TaskBoard');
-      }
+      await this.checkPremisssionByTaskBoardId(user, id, contributorsRole.reader)
       return taskBoard
     } catch (error) {
       console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
+      throw error
     }
   }
 
