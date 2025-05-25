@@ -24,7 +24,7 @@ export const ItemTaskBoard: React.FC<ItemTaskBoardProps> = ({ taskBoard }) => {
         <CardDescription className="scroll-m-20 text-2xl font-semibold tracking-tight"> {taskBoard.description}</CardDescription>
       </CardHeader>
       <CardContent className=" ">
-        <CustomButton onClick={handlerEnterToTaskBoard} text="Enter to board">
+        <CustomButton onClick={handlerEnterToTaskBoard} text="Open the board">
         </CustomButton>
       </CardContent>
     </Card>
