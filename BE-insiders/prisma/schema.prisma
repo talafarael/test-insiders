@@ -9,21 +9,33 @@ datasource db {
 }
 
 model User {
-  id        Int         @id @default(autoincrement())
-  email     String      @unique
-  password  String
-  name      String
-  role      Role        @default(USER)
-  taskBoard TaskBoard[] @relation("UserTasks")
+  id            Int           @id @default(autoincrement())
+  email         String        @unique
+  password      String
+  name          String
+  role          Role          @default(USER)
+  taskBoard     TaskBoard[]   @relation("UserTasks")
+  contributions Contributer[] @relation("UserContributions")
+}
+
+model Contributer {
+  id          String     @id @default(uuid())
+  role        RoleInDesk
+  userId      Int
+  taskBoardId String
+
+  user      User      @relation("UserContributions", fields: [userId], references: [id])
+  taskBoard TaskBoard @relation("BoardContributors", fields: [taskBoardId], references: [id])
 }
 
 model TaskBoard {
-  id          String  @id @default(uuid())
-  title       String
-  description String?
-  ownerId     Int
-  owner       User    @relation("UserTasks", fields: [ownerId], references: [id])
-  tasks       Task[]  @relation("TaskBoardTasks")
+  id           String        @id @default(uuid())
+  title        String
+  description  String?
+  ownerId      Int
+  owner        User          @relation("UserTasks", fields: [ownerId], references: [id])
+  tasks        Task[]        @relation("TaskBoardTasks")
+  contributors Contributer[] @relation("BoardContributors")
 }
 
 model Task {
@@ -33,6 +45,11 @@ model Task {
   taskBoardId String
   isComplete  Boolean   @default(false)
   taskBoard   TaskBoard @relation("TaskBoardTasks", fields: [taskBoardId], references: [id])
+}
+
+enum RoleInDesk {
+  READER
+  WRITER
 }
 
 enum Role {

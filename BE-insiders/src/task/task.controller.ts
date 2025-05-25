@@ -21,8 +21,8 @@ export class TaskController {
   }
   @Post("change-task")
   @UseGuards(JwtAuthGuard)
-  async cahgneTask(@Body() body: ChangeTaskDto) {
-    return await this.taskService.changeTask(body)
+  async cahgneTask(@Request() data: ExpressRequest & { user: IToken }, @Body() body: ChangeTaskDto) {
+    return await this.taskService.changeTask(data.user, body)
   }
   @Delete(":id")
   @UseGuards(JwtAuthGuard)

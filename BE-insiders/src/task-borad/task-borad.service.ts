@@ -1,11 +1,16 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { ForbiddenException, forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTaskBoardDto } from './dto/create-task-board.dto';
 import { IToken } from 'src/shared/type/IToken';
+import { ContributerService } from 'src/contributer/contributer.service';
+import { ContributorsRole } from 'src/contributer/enum/contributer-role.enum';
 
 @Injectable()
 export class TaskBoradService {
-  constructor(private prisma: PrismaService) { }
+  constructor(
+    private prisma: PrismaService,
+    private contributerService: ContributerService,
+  ) { }
   async createTaskBoard(user: IToken, data: CreateTaskBoardDto) {
     try {
       await this.prisma.taskBoard.create({
@@ -21,12 +26,26 @@ export class TaskBoradService {
       throw new Error('Failed to create TaskBoard');
     }
   }
+  async checkPremisssionByTaskBoardId(user: IToken, id: string, premission: ContributorsRole) {
+    try {
+      const taskBoard = await this.getById(id)
+      if (!taskBoard) {
+        throw new NotFoundException('TaskBoard not found');
+      }
+      return await this.contributerService.checkPremission(user, taskBoard, premission)
+    } catch (error) {
+      console.error('Error creating TaskBoard:', error);
+      throw new Error('Failed to create TaskBoard');
+    }
+  }
+
   async getById(id: string) {
     try {
       const taskBoard = await this.prisma.taskBoard.findFirst({
         where: { id: id },
         include: {
-          tasks: true
+          tasks: true,
+          contributors: true
         }
       });
       return taskBoard
@@ -36,16 +55,6 @@ export class TaskBoradService {
     }
 
   }
-  async changeStateTask(user: IToken, data: CreateTaskBoardDto) {
-    try {
-
-
-    } catch (error) {
-      console.error('Error creating TaskBoard:', error);
-      throw new Error('Failed to create TaskBoard');
-    }
-  }
-
   async getTaskBoard(user: IToken, id: string) {
     try {
       const taskBoard = await this.getById(id)
@@ -61,4 +70,5 @@ export class TaskBoradService {
       throw new Error('Failed to create TaskBoard');
     }
   }
+
 }
