@@ -1,0 +1,10 @@
+FROM node:20
+
+WORKDIR /app
+COPY package.json package-lock.json ./ 
+
+RUN npm i && npm build
+
+COPY  . .
+EXPOSE  9000
+CMD [ "npm","run","start" ]

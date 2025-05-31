@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  frontend:
+    build:
+      context: ./FE-todo
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    networks:
+      - todo
+    depends_on:
+      - backend
+    volumes:
+      - /FE-todo:/app
+      - /app/node_modules
+
+  backend:
+    restart: always
+    build:
+      context: ./BE-todo
+      dockerfile: Dockerfile.dev
+    ports:
+      - "9000:9000"
+    networks:
+      - todo
+    depends_on:
+      - postgres
+    volumes:
+      - ./BE-todo:/app
+      - /app/node_modules
+    environment:
+      - DATABASE_URL=postgresql://insiders:randompassword@postgres:5432/mydb
+    command: npm run start:dev
+
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/apps/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=randompassword
+      - POSTGRES_USER=insiders
+      - POSTGRES_DB=mydb
+    networks:
+      - todo
+
+networks:
+  todo:
+volumes:
+  postgres_data:

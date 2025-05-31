@@ -2,4 +2,3 @@ node_modules
 .next
 ./BE-insiders/node_modules
 ./FE-todo/node_modules
-BE-insiders/

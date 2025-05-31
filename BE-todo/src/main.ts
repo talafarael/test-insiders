@@ -7,14 +7,15 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   const config = new DocumentBuilder()
-    .setTitle('Todo lsit')
+    .setTitle('Todo list')
     .setDescription('The todo API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('todo')
     .build();
+
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
   app.useGlobalFilters(new AllExceptionsFilter());
-  await app.listen(process.env.PORT ?? 9001);
+  await app.listen(process.env.PORT ?? 9000);
 }
 bootstrap();
